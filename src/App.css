@@ -845,10 +845,19 @@ body {
     margin-left: 0;
     width: 100%;
     padding: 15px;
+    padding-top: 80px; /* Add space for the fixed menu button */
   }
 
   .menu-button {
     display: block;
+    position: fixed;
+    top: 25px;
+    left: 20px;
+    background-color: var(--white);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
   }
 
   .top-bar {

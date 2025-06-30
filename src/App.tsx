@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { HomeIcon, ChartBarIcon, UserGroupIcon, ChatBubbleLeftRightIcon, BriefcaseIcon, Cog6ToothIcon, ArrowLeftOnRectangleIcon, MagnifyingGlassIcon, ChevronDownIcon, MapPinIcon, BookmarkIcon, HeartIcon, UserCircleIcon, CheckCircleIcon, XCircleIcon, StarIcon, ArrowTrendingUpIcon, ArrowTrendingDownIcon, Bars3Icon } from '@heroicons/react/24/outline';
+import { HomeIcon, ChartBarIcon, UserGroupIcon, ChatBubbleLeftRightIcon, BriefcaseIcon, Cog6ToothIcon, ArrowLeftOnRectangleIcon, MagnifyingGlassIcon, ChevronDownIcon, MapPinIcon, BookmarkIcon, HeartIcon, UserCircleIcon, CheckCircleIcon, XCircleIcon, StarIcon, ArrowTrendingUpIcon, ArrowTrendingDownIcon, ChevronRightIcon, ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
 import './App.css';
 import RevenueChart from './components/RevenueChart';
 
 function App() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
+  const [isAccountMenuOpen, setAccountMenuOpen] = useState(false);
 
   const mainNavItems = [
     { id: 'dashboard', label: 'Dashboard', icon: <HomeIcon className="w-6 h-6" /> },
@@ -78,12 +79,18 @@ function App() {
                 <li 
                   key={item.id}
                   className={`nav-item ${item.id === 'dashboard' ? 'active' : ''}`}
+                  onClick={() => item.subItems && setAccountMenuOpen(!isAccountMenuOpen)}
                 >
                   <a href="#" className="nav-link">
                     <span className="icon">{item.icon}</span>
                     <span className="label">{item.label}</span>
+                    {item.subItems && (
+                      <span className="submenu-arrow">
+                        {isAccountMenuOpen ? <ChevronDownIcon className="w-4 h-4" /> : <ChevronRightIcon className="w-4 h-4" />}
+                      </span>
+                    )}
                   </a>
-                  {item.subItems && (
+                  {item.subItems && isAccountMenuOpen && (
                     <ul className="submenu">
                       {item.subItems.map((subItem, index) => (
                         <li key={index} className="submenu-item">
@@ -122,16 +129,18 @@ function App() {
 
       {/* Main Content */}
       <main className="main-content">
-        <header className="top-bar">
-          <button className="menu-button" onClick={() => setSidebarOpen(!isSidebarOpen)}>
-            <Bars3Icon className="w-6 h-6" />
-          </button>
+        {/* Mobile Menu Button */}
+        <button className="menu-button" onClick={() => setSidebarOpen(!isSidebarOpen)}>
+          {isSidebarOpen ? <ArrowLeftIcon className="w-6 h-6" /> : <ArrowRightIcon className="w-6 h-6" />}
+        </button>
+
+        <div className="top-bar">
           <div className="search-container">
             <MagnifyingGlassIcon className="search-icon" />
             <input type="text" placeholder="Search" className="search-input" />
           </div>
           <button className="sort-button">Sort by</button>
-        </header>
+        </div>
         <div className="overview-container">
           <h1 className="overview-title">Overview</h1>
           <div className="dashboard-grid">
