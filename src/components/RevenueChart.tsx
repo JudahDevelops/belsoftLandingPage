@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceArea } from 'recharts';
 
 const data = [
@@ -16,6 +17,17 @@ const data = [
 ];
 
 const RevenueChart = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <ResponsiveContainer width="100%" height={200}>
       <BarChart data={data} margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>
@@ -25,8 +37,12 @@ const RevenueChart = () => {
         <Tooltip cursor={{ fill: 'rgba(240, 240, 240, 0.5)' }} />
         <Bar dataKey="revenue" fill="#42A5F5" />
         <Bar dataKey="expenses" fill="#FFCA28" />
-        <ReferenceArea x1="Feb" x2="Mar" y1={7700} y2={9700} strokeOpacity={0.3} label={{ value: 'A fall in revenue', fill: '#E53935', fontSize: 12 }} />
-        <ReferenceArea x1="Jun" x2="Jul" y1={7700} y2={9700} strokeOpacity={0.3} label={{ value: 'A rise in revenue', fill: '#2E7D32', fontSize: 12 }} />
+        {!isMobile && (
+          <>
+            <ReferenceArea x1="Feb" x2="Mar" y1={7700} y2={9700} strokeOpacity={0.3} label={{ value: 'A fall in revenue', fill: '#E53935', fontSize: 12 }} />
+            <ReferenceArea x1="Jun" x2="Jul" y1={7700} y2={9700} strokeOpacity={0.3} label={{ value: 'A rise in revenue', fill: '#2E7D32', fontSize: 12 }} />
+          </>
+        )}
       </BarChart>
     </ResponsiveContainer>
   );

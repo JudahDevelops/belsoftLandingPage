@@ -1,8 +1,11 @@
-import { HomeIcon, ChartBarIcon, UserGroupIcon, ChatBubbleLeftRightIcon, BriefcaseIcon, Cog6ToothIcon, ArrowLeftOnRectangleIcon, MagnifyingGlassIcon, ChevronDownIcon, MapPinIcon, BookmarkIcon, HeartIcon, UserCircleIcon, CheckCircleIcon, XCircleIcon, StarIcon, ArrowTrendingUpIcon, ArrowTrendingDownIcon } from '@heroicons/react/24/outline';
+import { useState } from 'react';
+import { HomeIcon, ChartBarIcon, UserGroupIcon, ChatBubbleLeftRightIcon, BriefcaseIcon, Cog6ToothIcon, ArrowLeftOnRectangleIcon, MagnifyingGlassIcon, ChevronDownIcon, MapPinIcon, BookmarkIcon, HeartIcon, UserCircleIcon, CheckCircleIcon, XCircleIcon, StarIcon, ArrowTrendingUpIcon, ArrowTrendingDownIcon, Bars3Icon } from '@heroicons/react/24/outline';
 import './App.css';
 import RevenueChart from './components/RevenueChart';
 
 function App() {
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
+
   const mainNavItems = [
     { id: 'dashboard', label: 'Dashboard', icon: <HomeIcon className="w-6 h-6" /> },
     { id: 'analytics', label: 'Analytic & Report', icon: <ChartBarIcon className="w-6 h-6" /> },
@@ -63,8 +66,10 @@ function App() {
 
   return (
     <div className="app">
+      {isSidebarOpen && <div className="overlay" onClick={() => setSidebarOpen(false)}></div>}
+
       {/* Sidebar */}
-      <div className="sidebar">
+      <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <div className="nav-section">
           {/* Main Navigation */}
           <nav className="nav-menu">
@@ -118,6 +123,9 @@ function App() {
       {/* Main Content */}
       <main className="main-content">
         <header className="top-bar">
+          <button className="menu-button" onClick={() => setSidebarOpen(!isSidebarOpen)}>
+            <Bars3Icon className="w-6 h-6" />
+          </button>
           <div className="search-container">
             <MagnifyingGlassIcon className="search-icon" />
             <input type="text" placeholder="Search" className="search-input" />

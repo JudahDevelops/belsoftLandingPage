@@ -147,6 +147,15 @@ body {
   margin-right: 12px;
 }
 
+.menu-button {
+  display: none; /* Hidden by default on desktop */
+  background: none;
+  border: none;
+  color: var(--text-deep-blue);
+  cursor: pointer;
+  z-index: 1100; /* Ensure it's clickable */
+}
+
 /* Main Content */
 .main-content {
   flex: 1;
@@ -780,3 +789,205 @@ body {
 .ratings-summary p { font-size: 0.8rem; color: #555; }
 .rated-avatar-sm { width: 24px; height: 24px; border-radius: 50%; border: 2px solid #F8F9FA; margin-left: -10px; }
 .star-icon-sm { width: 14px; height: 14px; color: #FFC107; }
+
+/* === Custom Color Styles for Overview Section === */
+
+/* Style for dropdowns in the overview section */
+.overview-container .dropdown-wrapper select,
+.overview-container .time-dropdown,
+.overview-container .job-filter-dropdown {
+  color: #070F65;
+  border: 1px solid #070F65;
+  background-color: var(--white);
+}
+
+/* Style for the search bar in the overview section */
+.overview-container .search-wrapper-job {
+  border: 1px solid #070F65;
+  border-radius: 5px;
+}
+
+.overview-container .search-wrapper-job input {
+  color: #070F65;
+}
+
+.overview-container .search-wrapper-job input::placeholder {
+  color: #070F65;
+  opacity: 0.7;
+}
+
+/* Style for icons in the overview section */
+.overview-container .dropdown-icon,
+.overview-container .search-icon {
+  color: #070F65;
+}
+
+/* Style for the filter button in the overview section */
+.overview-container .filter-button {
+  background-color: var(--white);
+  color: #070F65;
+  border: 1px solid #070F65;
+}
+
+/* Responsive Styles for Mobile and Tablets */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+    padding: 15px;
+  }
+
+  .menu-button {
+    display: block;
+  }
+
+  .top-bar {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .search-input {
+    width: 100%;
+  }
+
+  /* Convert grid layouts to single column */
+  .dashboard-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .dashboard-grid > * {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  /* Performance section - stack columns vertically */
+  .performance-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .performance-left-column,
+  .performance-right-column {
+    width: 100%;
+  }
+
+  .performance-bottom-left {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+  }
+
+  /* Popular Task Specialist - stack components */
+  .popular-task-specialist {
+    display: block;
+  }
+  
+  .popular-task-specialist .pts-main {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .popular-task-specialist .pts-main > div {
+    width: 100%;
+  }
+  
+  .pts-items {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .progress-percent-text {
+    top: 60%;
+    
+  }
+  
+  .ratings-card {
+    width: 100%;
+    margin-top: 15px;
+  }
+
+  /* Make tables scrollable horizontally */
+  .user-table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .account-management-table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .job-oversight-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .search-wrapper-job {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .search-wrapper-job input {
+    width: 100%;
+  }
+
+  .job-oversight-controls .filter-button,
+  .job-oversight-controls .dropdown-wrapper {
+    margin-top: 5px;
+    width: 100%;
+  }
+
+  .job-oversight-controls .dropdown-wrapper select {
+    width: 100%;
+  }
+
+  .job-oversight-controls .dropdown-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .pts-main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .pts-items {
+    width: 100%;
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999; /* Below sidebar, above content */
+  }
+}
