@@ -353,7 +353,7 @@ body {
 }
 
 .job-list-container {
-  max-height: 500px; /* Constrain the height and enable scrolling */
+  max-height: 700px; /* Constrain the height and enable scrolling */
   overflow-y: auto; /* Enable vertical scrolling */
   padding-right: 10px; /* Add space for the scrollbar */
 }
@@ -676,7 +676,7 @@ body {
 
 .performance-grid {
   display: grid;
-  grid-template-columns: 0.7fr 1.3fr;
+  grid-template-columns: 0.75fr 1.25fr;
   gap: 15px;
   align-items: start;
 }

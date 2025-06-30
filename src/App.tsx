@@ -37,6 +37,14 @@ function App() {
       budget: '4000',
       description: 'A growing tech company needs a technician to install 6 CCTV cameras in their office space. The job requires running cables through walls and configuring the security system.',
       location: 'Lagos, Nigeria',
+    },
+    {
+      posterName: 'Mack Zuckerberg',
+      posterAvatar: 'https://i.imgur.com/5zV1sA8.jpeg',
+      jobTitle: 'Install Security Cameras for TechHub',
+      budget: '4000',
+      description: 'A growing tech company needs a technician to install 6 CCTV cameras in their office space. The job requires running cables through walls and configuring the security system.',
+      location: 'Lagos, Nigeria',
     }
     // Add more job objects here to populate the list
   ];
