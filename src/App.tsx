@@ -1,4 +1,4 @@
-import { HomeIcon, ChartBarIcon, UserGroupIcon, ChatBubbleLeftRightIcon, BriefcaseIcon, Cog6ToothIcon, ArrowLeftOnRectangleIcon, MagnifyingGlassIcon, ChevronDownIcon, MapPinIcon, BookmarkIcon, HeartIcon } from '@heroicons/react/24/outline';
+import { HomeIcon, ChartBarIcon, UserGroupIcon, ChatBubbleLeftRightIcon, BriefcaseIcon, Cog6ToothIcon, ArrowLeftOnRectangleIcon, MagnifyingGlassIcon, ChevronDownIcon, MapPinIcon, BookmarkIcon, HeartIcon, UserCircleIcon, CheckCircleIcon, XCircleIcon, StarIcon, ArrowTrendingUpIcon, ArrowTrendingDownIcon } from '@heroicons/react/24/outline';
 import './App.css';
 import RevenueChart from './components/RevenueChart';
 
@@ -39,6 +39,18 @@ function App() {
       location: 'Lagos, Nigeria',
     }
     // Add more job objects here to populate the list
+  ];
+
+  const accountData = [
+    { userId: '#CCCCS45', name: 'Patrick James', avatar: 'https://i.imgur.com/5zV1sA8.jpeg', userStatus: 'Professional', status: 'Deactivated' },
+    { userId: '#CCCCS45', name: 'Patrick James', avatar: 'https://i.imgur.com/5zV1sA8.jpeg', userStatus: 'Professional', status: 'Activated' },
+    { userId: '#CCCCS45', name: 'Patrick James', avatar: 'https://i.imgur.com/5zV1sA8.jpeg', userStatus: 'Professional', status: 'Deactivated' },
+    { userId: '#CCCCS45', name: 'Patrick James', avatar: 'https://i.imgur.com/5zV1sA8.jpeg', userStatus: 'Professional', status: 'Activated' },
+  ];
+
+  const unresolvedDisputesData = [
+    { name: 'Jame Markus', avatar: 'https://randomuser.me/api/portraits/men/32.jpg', issue: 'My task specia...', time: 'Jan 14 2025' },
+    { name: 'Ngozie Peter', avatar: 'https://randomuser.me/api/portraits/women/44.jpg', issue: 'My task specia...', time: 'Jan 14 2025' },
   ];
 
   return (
@@ -180,17 +192,178 @@ function App() {
                 ))}
               </div>
             </div>
-            <div className="card performance">
-              <h2>Performance</h2>
-              {/* Placeholder for performance content */}
-            </div>
             <div className="card account-management">
-              <h2>Account Management</h2>
-              {/* Placeholder for account management content */}
+              <div className="account-management-header">
+                <h2>Account Management</h2>
+                <a href="#" className="view-more-link-am">View More &raquo;</a>
+              </div>
+              <table className="account-management-table">
+                <thead>
+                  <tr>
+                    <th>User ID</th>
+                    <th>Name of user</th>
+                    <th>User status</th>
+                    <th>Status</th>
+                    <th>Admin control</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {accountData.map((user, index) => (
+                    <tr key={index}>
+                      <td>{user.userId}</td>
+                      <td>
+                        <div className="user-name-cell">
+                          <img src={user.avatar} alt={user.name} className="user-avatar" />
+                          <span>{user.name}</span>
+                        </div>
+                      </td>
+                      <td>
+                        <div className="user-status-cell">
+                          <UserCircleIcon className="user-status-icon" />
+                          <span>{user.userStatus}</span>
+                        </div>
+                      </td>
+                      <td>
+                        <span className={`status-badge ${user.status.toLowerCase()}`}>
+                          {user.status === 'Activated' ? <CheckCircleIcon className="status-badge-icon" /> : <XCircleIcon className="status-badge-icon" />}
+                          {user.status}
+                        </span>
+                      </td>
+                      <td>
+                        <button className="admin-control-button">Activate</button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div className="card performance">
+              <div className="performance-header">
+                <h2>Performance</h2>
+              </div>
+              <div className="performance-grid">
+                <div className="performance-left-column">
+                  <div className="perf-card total-user">
+                    <p className="perf-card-title">Total User</p>
+                    <div className="perf-metric">
+                      <span>2k</span>
+                      <sub>users</sub>
+                      <ArrowTrendingUpIcon className="sparkline green" />
+                    </div>
+                    <p className="perf-card-subtitle">Monthly Subscribers</p>
+                    <div className="subs-progress-bar">
+                      <div className="subs-progress-inner" style={{ width: '40%' }}></div>
+                      <span className="subs-label">20subs</span>
+                    </div>
+                  </div>
+
+                  <div className="performance-bottom-left">
+                    <div className="circular-progress-card">
+                      <div className="circular-progress" style={{ '--value': 65 } as React.CSSProperties}>
+                        <span className="progress-value">65%</span>
+                      </div>
+                    </div>
+
+                    <div className="perf-card ratings-summary">
+                      <div className="avatar-group">
+                        <img src="https://randomuser.me/api/portraits/men/62.jpg" alt="User 1" className="rated-avatar-sm" />
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="User 2" className="rated-avatar-sm" />
+                        <img src="https://randomuser.me/api/portraits/men/68.jpg" alt="User 3" className="rated-avatar-sm" />
+                      </div>
+                      <p>+1k people rated</p>
+                      <div className="star-rating">
+                        <StarIcon className="star-icon-sm" />
+                        <StarIcon className="star-icon-sm" />
+                        <StarIcon className="star-icon-sm" />
+                        <StarIcon className="star-icon-sm" />
+                        <StarIcon className="star-icon-sm" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="performance-right-column">
+                  <div className="perf-card resolved-disputes">
+                    <p className="perf-card-title">Total Resolved Disputes</p>
+                    <div className="perf-metric">
+                      <span>25%</span>
+                      <sub>disputes</sub>
+                      <ArrowTrendingUpIcon className="sparkline green" />
+                    </div>
+                  </div>
+
+                  <div className="perf-card unresolved-disputes">
+                    <p className="perf-card-title">Total Unresolve Disputes</p>
+                    <div className="perf-metric">
+                      <span>75%</span>
+                      <sub>disputes</sub>
+                      <ArrowTrendingDownIcon className="sparkline red" />
+                    </div>
+                    <div className="disputes-list">
+                      <div className="disputes-list-header">
+                        <span>User name</span>
+                        <span>Issues</span>
+                        <span>Time</span>
+                      </div>
+                      {unresolvedDisputesData.map((dispute, index) => (
+                        <div className="dispute-item" key={index}>
+                          <div className="dispute-user">
+                            <img src={dispute.avatar} alt={dispute.name} />
+                            <span>{dispute.name}</span>
+                          </div>
+                          <span>{dispute.issue}</span>
+                          <span>{dispute.time}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <a href="#" className="view-more-queries">View more queries</a>
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="card popular-task-specialist">
-              <h2>Popular Task Specialist</h2>
-              {/* Placeholder for popular task specialist content */}
+              <div className="pts-main">
+              <div>
+              <div className="pts-header">
+                  <h2>Popular Task Specialist</h2>
+                </div>
+                <div className="pts-items">
+                  <div className="progress-item">
+                    <label>Task Completion In Due Date</label>
+                    <div className="progress-display">
+                      <div className="progress-outer">
+                        <div className="progress-inner" style={{ width: '80%', backgroundColor: 'var(--primary-color)' }}></div>
+                        <span className="progress-percent-text">80%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="progress-item">
+                    <label>Uncompleted task</label>
+                    <div className="progress-display">
+                      <div className="progress-outer">
+                        <div className="progress-inner" style={{ width: '20%', backgroundColor: '#F44336' }}></div>
+                        <span className="progress-percent-text">20%</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                <div className="ratings-card">
+                  <div className="avatar-group">
+                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="User 1" className="rated-avatar" />
+                    <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="User 2" className="rated-avatar" />
+                    <img src="https://randomuser.me/api/portraits/men/86.jpg" alt="User 3" className="rated-avatar" />
+                    <span className="rated-plus">+100</span>
+                  </div>
+                  <p className="most-rated-text">Most rated</p>
+                  <div className="star-rating">
+                    <StarIcon className="star-icon" />
+                    <StarIcon className="star-icon" />
+                    <StarIcon className="star-icon" />
+                    <StarIcon className="star-icon" />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
